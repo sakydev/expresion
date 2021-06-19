@@ -19,7 +19,7 @@
 * 
 */
 
-require('vendor/autoload.php');
+require('../../vendor/autoload.php');
 use Benlipp\SrtParser\Parser;
 
 class Expresion
