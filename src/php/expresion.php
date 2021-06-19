@@ -26,7 +26,7 @@ class Expresion
 {
 	// These methods make sure config values aren't all over the class
 	public $filename_length = 40;
-	public $filename_space_separator = '-';
+	public $filename_separator = '-';
 	public $maximum_line_length = 35;
 	public $ffmpeg = 'ffmpeg';
 	public $video_codec = 'copy';
@@ -36,15 +36,50 @@ class Expresion
 		$this->video = $video;
 		$this->subtitles = $subtitles;
 		$this->output_directory = $output_directory;
-		$this->filename_space_separator = '-';
+		$this->filename_separator = '-';
 	}
 
 	/* Configuration get and set methods start */
-	public function set_video_codec($codec) {
-		$this->video_codec = $video_codec;
+	public function set_filename_length($length) {
+		$this->filename_length = $length;
 	}
 
-	public function get_video_codec($codec) {
+	public function get_filename_length() {
+		return $this->filename_length;
+	}
+
+	public function set_maximum_line_length($length) {
+		$this->maximum_line_length = $length;
+	}
+
+	public function set_maximum_line_length() {
+		return $this->maximum_line_length;
+	}
+
+	//
+	public function set_ffmpeg_path($ffmpeg) {
+		$this->ffmpeg = $ffmpeg;
+	}
+
+	public function get_ffmpeg_path() {
+		return $this->ffmpeg;
+	}
+
+	//
+	public function set_video_codec($codec) {
+		$this->video_codec = $codec;
+	}
+
+	public function get_video_codec() {
+		return $this->video_codec;
+	}
+
+	// sets audio codec : supported => 
+	public function set_audio_codec($codec) {
+		$this->audio_codec = $codec;
+	}
+
+	public function get_audio_codec() {
 		return $this->audio_codec;
 	}
 
@@ -111,8 +146,8 @@ class Expresion
 	private function create_filename($line) {
 		$line = substr(strtolower($line), 0, $this->filename_length);
 		$line = str_replace(array('!', '$', '#', '?', '/', '*', "'", '.', ','), '', $line);
-		$line = str_replace(' ', $this->filename_space_separator, $line);
-		return sprintf("%s{$this->filename_space_separator}%s.mp4", $line, time());
+		$line = str_replace(' ', $this->filename_separator, $line);
+		return sprintf("%s{$this->filename_separator}%s.mp4", $line, time());
 	}
 
 	/**
@@ -191,7 +226,7 @@ class Expresion
 		}
 
 		foreach ($commands as $key => $command) {
-			$log_file = $logs_directory . date("Y-m-d") . $this->filename_space_separator . md5(uniqid(rand(), true)); // just make it random
+			$log_file = $logs_directory . date("Y-m-d") . $this->filename_separator . md5(uniqid(rand(), true)); // just make it random
 			$output = shell_exec("{$command} 2>&1");
 			file_put_contents("{$log_file}.log", $output)
 			$response[$command] = $log_file;
