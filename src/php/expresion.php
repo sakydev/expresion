@@ -8,10 +8,7 @@
 * 
 * ### Why I wrote this:
 * I always felt that despite being so powerful, GIFs lost great impact when muted. 
-* I wanted to fix that. I wanted to create a gifs with sound platform. I wanted to be 
-* able to send a clip with exact words and tone that matched my feelings.
-* Hence, I created this platform. It was live for about 8 months before I had to 
-* shut it down due to hosting costs.
+* I wanted to fix that. I wanted to create a gifs with sound utility.
 
 * ### What's interesting:
 * It is tricky to cut videos based on subtitles even though it didn't seem like that when I 
